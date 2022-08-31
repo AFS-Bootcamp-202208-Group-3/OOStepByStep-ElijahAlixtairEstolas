@@ -11,7 +11,15 @@ public class Student extends Person{
 
     @Override
     public String introduce() {
-        return super.introduce() + " I am a student."+" I am in class "+this.klass.getNumber()+".";
+        return super.introduce() + " I am a student."+" I am in class "+this.klass.getNumber()+". "+
+                generateLeaderMessage();
+    }
+
+    private String generateLeaderMessage() {
+        if(klass.isLeader(this))
+            return "I am the leader of class "+klass.getNumber()+".";
+        else
+            return "";
     }
 
     public boolean isIn(Klass klass){
