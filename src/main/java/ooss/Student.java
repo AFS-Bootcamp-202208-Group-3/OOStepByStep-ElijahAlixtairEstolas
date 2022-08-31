@@ -1,5 +1,7 @@
 package ooss;
 
+import java.util.Objects;
+
 public class Student extends Person{
     private Klass klass;
 
@@ -9,14 +11,15 @@ public class Student extends Person{
 
     @Override
     public String introduce() {
-        return super.introduce() + " I am a student."+" I am in class "+this.klass.getNumber();
+        return super.introduce() + " I am a student."+" I am in class "+this.klass.getNumber()+".";
     }
 
-    public boolean isIn(int classNumber){
-        return classNumber== klass.getNumber();
+    public boolean isIn(Klass klass){
+        return !Objects.isNull(this.klass) && this.klass.equals(klass);
     }
 
-    public void join(int classNumber){
-        this.klass.setNumber(classNumber);
+    public void join(Klass klass){
+        this.klass = klass;
     }
+
 }
