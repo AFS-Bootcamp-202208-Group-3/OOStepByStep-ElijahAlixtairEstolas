@@ -11,11 +11,15 @@ public class Person {
 
     public String introduce(){
         return MessageFormat.format("My name is {0}. " +
-                "I am {1} years old.",
+                        "I am {1} years old.",
                 this.name, this.age);
     }
 
-
+    @Override
+    public boolean equals(Object object){
+        Person person = (Person) object;
+        return this.id ==  person.id;
+    }
 
     private int id;
     private String name;
