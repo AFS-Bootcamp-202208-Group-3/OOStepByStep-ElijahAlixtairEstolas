@@ -21,8 +21,22 @@ public class Person {
         return this.id ==  person.id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     private int id;
     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+
     private int age;
 
 

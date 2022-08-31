@@ -1,5 +1,6 @@
 package ooss;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -18,21 +19,28 @@ public class Teacher extends Person{
 
     public void assignTo(Klass klass){
         if(!belongsTo(klass))
+            klass.setTeacher(this);
             klasses.add(klass);
+
     }
 
     @Override
     public String introduce() {
         return super.introduce() + " I am a teacher." +
                 " I teach Class "+
-                klasses.stream()
-                        .map(klass ->
-                                String.valueOf(klass.getNumber()
-                                )
-                        ).collect(Collectors.joining(", ")) +".";
+                getClasses() +".";
+    }
+
+    private String getClasses() {
+        return klasses.stream()
+                .map(klass ->
+                        String.valueOf(klass.getNumber()
+                        )
+                ).collect(Collectors.joining(", "));
     }
 
     public boolean isTeaching(Student student){
         return klasses.contains(student.getKlass());
     }
+
 }
