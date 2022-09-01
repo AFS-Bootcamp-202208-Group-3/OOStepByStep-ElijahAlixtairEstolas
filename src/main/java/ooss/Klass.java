@@ -1,8 +1,6 @@
 package ooss;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Klass {
@@ -11,9 +9,6 @@ public class Klass {
     }
     public int getNumber() {
         return number;
-    }
-    public void setNumber(int number) {
-        this.number = number;
     }
     @Override
     public boolean equals(Object o) {
@@ -31,8 +26,8 @@ public class Klass {
     public void assignLeader(Student leader){
         if(leader.isIn(this)) {
             this.leader = leader;
-            printLeaderAssignmentMessage(watcher, leader.getName());
-            printLeaderAssignmentMessage(teacher, leader.getName());
+            if(Objects.nonNull(watcher))
+                watcher.printLeaderAssignmentMessage(leader.getName());
         }
         else
             System.out.println("It is not one of us.");
@@ -59,13 +54,6 @@ public class Klass {
     }
 
 
-    public void printLeaderAssignmentMessage(Person person, String leaderName) {
-        if(Objects.nonNull(person))
-            System.out.println(MessageFormat.format("I am {0}, {3} of Class {1}. I know {2} become Leader.",
-                person.getName(),
-                number, leaderName,
-                person.getClass().getSimpleName().toLowerCase()));
-    }
 
 
     private Teacher teacher;

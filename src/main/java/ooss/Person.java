@@ -1,6 +1,7 @@
 package ooss;
 
 import java.text.MessageFormat;
+import java.util.Objects;
 
 public class Person {
     public Person(int id, String name, int age) {
@@ -10,8 +11,7 @@ public class Person {
     }
 
     public String introduce(){
-        return MessageFormat.format("My name is {0}. " +
-                        "I am {1} years old.",
+        return MessageFormat.format("My name is {0}. I am {1} years old.",
                 this.name, this.age);
     }
 
@@ -21,10 +21,6 @@ public class Person {
         return this.id ==  person.id;
     }
 
-    public int getId() {
-        return id;
-    }
-
     private int id;
     private String name;
 
@@ -32,15 +28,14 @@ public class Person {
         return name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-
     private int age;
 
 
+    public void printLeaderAssignmentMessage(String leaderName) {}
 
+    String getClassNumbers() {
+        return "";
+    }
 
 
 }

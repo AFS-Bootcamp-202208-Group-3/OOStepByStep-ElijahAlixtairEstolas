@@ -1,5 +1,6 @@
 package ooss;
 
+import java.text.MessageFormat;
 import java.util.Objects;
 
 public class Student extends Person{
@@ -12,17 +13,35 @@ public class Student extends Person{
     @Override
     public String introduce() {
         return super.introduce() + " I am a student."+
-                printClassNumber() +
+                printClassAndLeaderMessage();
+    }
+
+    @Override
+    public void printLeaderAssignmentMessage(String leaderName) {
+        if(Objects.nonNull(this))
+            System.out.println(MessageFormat.format("I am {0}, {3} of Class {1}. I know {2} become Leader.",
+                    this.getName(),
+                    getClassNumbers(),
+                    leaderName,
+                    "student"));
+    }
+
+    private String printClassAndLeaderMessage() {
+        if(Objects.isNull(klass)) return "";
+        if(klass.isLeader(this)){
+            return generateLeaderMessage();
+        }
+        return printClassNumber() +
                 generateLeaderMessage();
     }
 
-    private Object printClassNumber() {
-        return Objects.isNull(klass) ? "" : " I am in class "+this.klass.getNumber()+".";
+    private String printClassNumber() {
+        return Objects.isNull(klass) ? "" : MessageFormat.format(" I am in class {0}.", klass.getNumber());
     }
 
     private String generateLeaderMessage() {
         if(Objects.nonNull(klass) && klass.isLeader(this))
-            return "I am the leader of class "+klass.getNumber()+".";
+            return MessageFormat.format(" I am the leader of class {0}.",klass.getNumber());
         else
             return "";
     }
@@ -37,6 +56,11 @@ public class Student extends Person{
 
     public Klass getKlass(){
         return klass;
+    }
+
+    @Override
+    String getClassNumbers() {
+        return String.valueOf(klass.getNumber());
     }
 
 }

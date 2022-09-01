@@ -1,10 +1,7 @@
 package ooss;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Teacher extends Person{
@@ -31,18 +28,28 @@ public class Teacher extends Person{
                 printClassNumber();
     }
 
+    @Override
+    public void printLeaderAssignmentMessage(String leaderName) {
+        if(Objects.nonNull(this))
+            System.out.println(MessageFormat.format("I am {0}, {3} of Class {1}. I know {2} become Leader.",
+                    this.getName(),
+                    getClassNumbers(),
+                    leaderName,
+                    "teacher"));
+    }
+
     private String printClassNumber() {
         if(klasses.isEmpty()) return "";
         return " I teach Class " +
-                getClasses() + ".";
+                getClassNumbers() + "."; //use MessageFormat
     }
 
-    private String getClasses() {
+
+    @Override
+    String getClassNumbers() {
         return klasses.stream()
-                .map(klass ->
-                        String.valueOf(klass.getNumber()
-                        )
-                ).collect(Collectors.joining(", "));
+                .map(klass -> String.valueOf(klass.getNumber()))
+                .collect(Collectors.joining(", "));
     }
 
     public boolean isTeaching(Student student){
