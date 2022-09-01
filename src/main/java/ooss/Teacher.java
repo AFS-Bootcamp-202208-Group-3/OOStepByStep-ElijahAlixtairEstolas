@@ -2,6 +2,7 @@ package ooss;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -27,8 +28,13 @@ public class Teacher extends Person{
     @Override
     public String introduce() {
         return super.introduce() + " I am a teacher." +
-                " I teach Class "+
-                getClasses() +".";
+                printClassNumber();
+    }
+
+    private String printClassNumber() {
+        if(klasses.isEmpty()) return "";
+        return " I teach Class " +
+                getClasses() + ".";
     }
 
     private String getClasses() {
